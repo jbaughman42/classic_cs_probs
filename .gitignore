@@ -102,3 +102,14 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Pycharm .ide files
+.idea/$CACHE_FILE$
+.idea/.gitignore
+.idea/classic_cs_probs.iml
+.idea/codeStyles/
+.idea/dictionaries
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
