@@ -5,6 +5,8 @@ Created October 28, 2019 by Jennifer Baughman
 Description:
 """
 
+memo = {1: 0, 2: 1}
+
 
 def fib_recurs(n: int) -> int:
     """Basic recursive solution to Fibonacci sequence
@@ -12,13 +14,21 @@ def fib_recurs(n: int) -> int:
     :param n: the nth number in the Fibonacci sequence
     :return: the value of the nth number in the Fibonacci sequence
     """
-    if n == 1:
-        return 0
-    elif n == 2:
-        return 1
+    if n < 2:
+        return n
     else:
-        return fib_recurs(n-1) + fib_recurs(n-2)
+        return fib_recurs(n - 2) + fib_recurs(n - 2)
+
+
+def fib_memo(n: int) -> int:
+    """Memoized recursive solution to Fibonacci sequence
     
+    :param n: the nth number in the Fibonacci sequence
+    :return: the value of the nth number in the Fibonacci sequence
+    """
+    if n not in memo:
+        memo[n] = fib_memo(n - 1) + fib_memo(n - 2)
+    return memo[n]
 
 
 def fib(n):
