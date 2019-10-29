@@ -5,7 +5,9 @@ Created October 28, 2019 by Jennifer Baughman
 Description:
 """
 
-memo = {1: 0, 2: 1}
+from functools import lru_cache
+
+memo = {0: 0, 1: 1}
 
 
 def fib_recurs(n: int) -> int:
@@ -31,12 +33,39 @@ def fib_memo(n: int) -> int:
     return memo[n]
 
 
+@lru_cache(maxsize=None)
+def fib_lru(n: int) -> int:
+    """Memoized recursive solution using functools LRU cache
+
+    :param n: the nth number in the Fibonacci sequence
+    :return: the value of the nth number in the Fibonacci sequence
+    """
+    if n < 2:
+        return n
+    return fib_lru(n - 1) + fib_lru(n - 2)
+
+
+def fib_iter(n: int) -> int:
+    """Iterative solution
+    
+    :param n: the nth number in the Fibonacci sequence
+    :return: the value of the nth number in the Fibonacci sequence
+    """
+    if n == 0:
+        return 0
+    last, next = 0, 1
+    for _ in range(1, n):
+        last, next = next, last + next
+    return next
+    
+
+
 def fib(n):
-    return fib_recurs(n)
+    return fib_iter(n)
 
 
 def main():
-    print(fib(5))
+    print(fib(50))
 
 
 if __name__ == "__main__":
